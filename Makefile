@@ -1,6 +1,4 @@
-run:	WebServer.java
-	javac WebServer.java
-	sudo java WebServer
+run:	
 
 clean:
 	rm *.class
