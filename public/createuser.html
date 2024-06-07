@@ -2,13 +2,52 @@
 <html>
 <body>
 <head>
+	<script>
+
+		// adapted from ChatGPT
+		let userData = {
+			username: "cosio",
+			name: "Ernesto",
+			email: "something@something.com",
+			password: "password"
+		};
+
+		/*function next(x)
+		{
+
+		}*/
+		let formData = document.querySelector("#form");
+
+		// adapted from ChatGPT
+		function sendPost(x) 
+		{ 	fetch('http://35.202.21.83:80/data/', {
+				method: 'POST',
+				headers: 
+					{'Content-Type': 'application/json',
+					},
+				body: JSON.stringify(userData)
+			})
+			.then(response => response.json())
+			.then(data => {console.log('Sucess');})
+			.catch((error) => {console.error('Error:', error);})
+		}
+
+		function checkValidity(x) 
+		{ if (document.getElementById(x).value == '') { alert('message');} }	
+	
+		function processUserData(x) {
+			//let userData =
+		}
+
+	</script>
 	<style> 
 	body { background-color: lightblue }
-	#container {
+	.container {
 		display: flex;
-		background: white;	
-		width: 1000;
+		background: white;
+		width: 80%;
 		height: 400px;
+		margin: auto;
 		justify-content: space-between;
 		align-items: center;
 		border-radius: 25px;
@@ -16,10 +55,9 @@
 	.left-text {
 		text-align: left;
 		flex: 1;
-		padding-left: 5px;
+		padding-left: 40px;
 	}
 	input:not([type=button]) {
-		outline: 1px solid gray;
 		text-align: center;
 		padding: 15px;
 		width: 400px;
@@ -29,7 +67,18 @@
 		display: flex;
 		align-items: flex-start;
 		flex-direction: column;
-		<!--gap: 5px; -->
+		padding-right: 40px;
+		padding-top: 60px;
+		text-align: center;
+	}
+	.button {
+		background-color: #008CFA;
+		padding: 10px 15px;
+		border: none;
+		border-radius: 10px;
+		font-size: 15px;
+		cursor: pointer;
+		margin: 10px;
 	}
 
 	</style>
@@ -37,20 +86,22 @@
 
 	<br><br><br><br><br><br><br>
 
-	<div id="container"> 
+	<div class="container"> 
 
 		<div class="left-text">
 		<h1 class="items" style="font-size:40px"> Create "Placeholder" Account </h1>
 		</div>
 
-		<div class="inputs">	<input type="text"  id="name" 	placeholder="Enter Your Name">
+		<div class="inputs">	
+		<form id="form">
+		<input type="text"  id="name" 	placeholder="Enter Your Name" onblur="checkValidity(this.id)">
 		<br><br>
 		<input type="email"  id="email"	placeholder="Enter Your Email">
 		<br><br>
 		<input type="username"  id="user" placeholder="Select username">
 		<br> <br>
-		<input type="button"  id="submit"  value="Submit">
-		</div>
+		<input type="button" class="button" id="submit"  value="Next" onclick="sendPost(this.id)">
+		<form/> </div>
 	</div>
 
 
